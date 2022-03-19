@@ -35,12 +35,12 @@ extension RecordCollectionViewCell {
         self.recordImage.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.recordImage)
         
-        let imageConfig = UIImage.SymbolConfiguration(scale: .large)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 64)
         let image = UIImage(systemName: "music.note.list")?.withConfiguration(imageConfig)
         self.recordImage.image = image
         self.recordImage.backgroundColor = .secondarySystemBackground
         self.recordImage.layer.cornerRadius = 10
-        self.recordImage.contentMode = .scaleAspectFit
+        self.recordImage.contentMode = .center
         self.recordImage.layer.borderWidth = 0.25
         self.recordImage.layer.borderColor = UIColor.gray.cgColor
         
@@ -52,6 +52,8 @@ extension RecordCollectionViewCell {
         
         self.recordLabel.font = .preferredFont(forTextStyle: .headline)
         self.recordLabel.textColor = .label
+        self.recordLabel.numberOfLines = 1
+        self.recordLabel.lineBreakMode = .byTruncatingTail
         
         // artistLabel
         self.artistLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -60,23 +62,25 @@ extension RecordCollectionViewCell {
         
         self.artistLabel.font = .preferredFont(forTextStyle: .subheadline)
         self.artistLabel.textColor = .secondaryLabel
+        self.artistLabel.numberOfLines = 1
+        self.artistLabel.lineBreakMode = .byTruncatingTail
         
         // Constraints
         
-        let inset = CGFloat(10)
         NSLayoutConstraint.activate([
-            self.recordImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: inset),
-            self.recordImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: inset),
-            self.recordImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: inset),
+            self.recordImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0),
+            self.recordImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0),
+            self.recordImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0),
+            self.recordImage.heightAnchor.constraint(equalTo: self.recordImage.widthAnchor, multiplier: 1),
             
-            self.recordLabel.topAnchor.constraint(equalTo: self.recordImage.bottomAnchor, constant: inset),
-            self.recordLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: inset),
-            self.recordLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -inset),
+            self.recordLabel.topAnchor.constraint(equalTo: self.recordImage.bottomAnchor, constant: 10),
+            self.recordLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0),
+            self.recordLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0),
             
-            self.artistLabel.topAnchor.constraint(equalTo: self.recordLabel.bottomAnchor, constant: inset/2),
-            self.artistLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: inset),
-            self.artistLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -inset),
-            self.artistLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -inset)
+            self.artistLabel.topAnchor.constraint(equalTo: self.recordLabel.bottomAnchor, constant: 5),
+            self.artistLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0),
+            self.artistLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0),
+            self.artistLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0)
         ])
         
     }

@@ -47,8 +47,16 @@ class RecordsCollectionViewController: UIViewController {
         let demoRecord = Record(context: self.container.viewContext)
         demoRecord.name = "Test Record"
         demoRecord.artist = "Test Artist"
+        
+        let demoRecord2 = Record(context: self.container.viewContext)
+        demoRecord2.name = "Test Record"
+        demoRecord2.artist = "Test Artist"
 
-        snapshot.appendItems([demoRecord])
+        let demoRecord3 = Record(context: self.container.viewContext)
+        demoRecord3.name = "Test Record"
+        demoRecord3.artist = "Test Artist"
+
+        snapshot.appendItems([demoRecord, demoRecord2, demoRecord3])
         self.dataSource.apply(snapshot, animatingDifferences: false)
     }
     
@@ -84,15 +92,15 @@ extension RecordsCollectionViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(210))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        
-        let spacing = CGFloat(10)
+
+        let spacing = CGFloat(20)
         group.interItemSpacing = .fixed(spacing)
-        
+
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = spacing
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 0, trailing: 20)
         
         return UICollectionViewCompositionalLayout(section: section)
     }
