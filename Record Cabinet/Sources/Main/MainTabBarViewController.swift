@@ -13,8 +13,12 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         let recordsVC = UINavigationController(rootViewController: RecordsCollectionViewController())
+        recordsVC.tabBarItem = UITabBarItem(title: "RECORDS_COLLECTION_TITLE".localized(), image: UIImage(systemName: "square.stack.fill"), selectedImage: UIImage(systemName: "square.stack.fill"))
         
-        self.viewControllers = [recordsVC]
+        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        searchVC.tabBarItem = UITabBarItem(title: "SEARCH_TITLE".localized(), image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
+        
+        self.viewControllers = [recordsVC, searchVC]
         self.tabBar.tintColor = UIColor(named: "AccentColor")
     }
 }

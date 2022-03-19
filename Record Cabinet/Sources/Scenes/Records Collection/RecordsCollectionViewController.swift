@@ -9,8 +9,6 @@ import UIKit
 import Logging
 import CoreData
 
-private let reuseIdentifier = "Cell"
-
 class RecordsCollectionViewController: UIViewController {
 
     enum Section {
@@ -32,6 +30,7 @@ class RecordsCollectionViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupView()
+        self.configureDataSource()
 
         // Core Data
         container = NSPersistentContainer(name: "Record_Cabinet")
@@ -56,7 +55,6 @@ class RecordsCollectionViewController: UIViewController {
     // MARK: - View Setup
     
     func setupView() {
-        self.tabBarItem = UITabBarItem(title: "RECORDS_COLLECTION_TITLE".localized(), image: UIImage(systemName: "square.stack.fill"), selectedImage: UIImage(systemName: "square.stack.fill"))
         self.title = "RECORDS_COLLECTION_TITLE".localized()
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -87,5 +85,24 @@ extension RecordsCollectionViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<RecordCollectionViewCell, Record> { (cell, indexPath, itemIdentifier) in
+            cell.recordLabel.text = itemIdentifier.name
+        }
+        
+        self.dataSource = UICollectionViewDiffableDataSource<Section, Record>(collectionView: self.collectionView) { (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: Record) -> UICollectionViewCell? in
+            
+            return self.collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+        }
+        
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
+//        snapshot.appendSections([.main])
+//        let demoRecord = Record()
+//        demoRecord.name = "test"
+//
+//        snapshot.appendItems([demoRecord])
+//        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

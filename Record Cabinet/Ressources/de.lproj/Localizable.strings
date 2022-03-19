@@ -8,4 +8,8 @@
 
 // MARK: - Records Collection
 
-"RECORDS_COLLECTION_TITLE" = "Sammlung";
+"RECORDS_COLLECTION_TITLE" = "Mediathek";
+
+// MARK: - Search
+
+"SEARCH_TITLE" = "Suche";
