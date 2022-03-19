@@ -29,6 +29,10 @@ class RecordsCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        #if DEBUG
+        self.logger.logLevel = .trace
+        #endif
+        
         self.setupView()
         self.configureDataSource()
 
@@ -40,24 +44,6 @@ class RecordsCollectionViewController: UIViewController {
                 self.logger.error("Unresolved error: \(error)")
             }
         }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
-        snapshot.appendSections([.main])
-        
-        let demoRecord = Record(context: self.container.viewContext)
-        demoRecord.name = "Test Record"
-        demoRecord.artist = "Test Artist"
-        
-        let demoRecord2 = Record(context: self.container.viewContext)
-        demoRecord2.name = "Test Record"
-        demoRecord2.artist = "Test Artist"
-
-        let demoRecord3 = Record(context: self.container.viewContext)
-        demoRecord3.name = "Test Record"
-        demoRecord3.artist = "Test Artist"
-
-        snapshot.appendItems([demoRecord, demoRecord2, demoRecord3])
-        self.dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     func saveContext() {
@@ -81,6 +67,7 @@ class RecordsCollectionViewController: UIViewController {
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .systemBackground
         self.view.addSubview(self.collectionView)
+        self.logger.trace("View setup successfull")
     }
 }
 
@@ -92,6 +79,7 @@ extension RecordsCollectionViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
+        #warning("Fix height not correct")
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(210))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
 
@@ -102,7 +90,10 @@ extension RecordsCollectionViewController {
         section.interGroupSpacing = spacing
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 0, trailing: 20)
         
-        return UICollectionViewCompositionalLayout(section: section)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        self.logger.trace("Created UICollectionViewLayout")
+        
+        return layout
     }
     
     func configureDataSource() {
@@ -115,5 +106,7 @@ extension RecordsCollectionViewController {
             
             return self.collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
+        
+        self.logger.trace("Configured UICollectionViewDiffableDataSource")
     }
 }
