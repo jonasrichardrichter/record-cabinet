@@ -40,6 +40,16 @@ class RecordsCollectionViewController: UIViewController {
                 self.logger.error("Unresolved error: \(error)")
             }
         }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
+        snapshot.appendSections([.main])
+        
+        let demoRecord = Record(context: self.container.viewContext)
+        demoRecord.name = "Test Record"
+        demoRecord.artist = "Test Artist"
+
+        snapshot.appendItems([demoRecord])
+        self.dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     func saveContext() {
@@ -74,7 +84,7 @@ extension RecordsCollectionViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         
         let spacing = CGFloat(10)
@@ -90,19 +100,12 @@ extension RecordsCollectionViewController {
     func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<RecordCollectionViewCell, Record> { (cell, indexPath, itemIdentifier) in
             cell.recordLabel.text = itemIdentifier.name
+            cell.artistLabel.text = itemIdentifier.artist
         }
         
         self.dataSource = UICollectionViewDiffableDataSource<Section, Record>(collectionView: self.collectionView) { (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: Record) -> UICollectionViewCell? in
             
             return self.collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
-        
-//        var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
-//        snapshot.appendSections([.main])
-//        let demoRecord = Record()
-//        demoRecord.name = "test"
-//
-//        snapshot.appendItems([demoRecord])
-//        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
