@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Record Cabinet
+
+  Created by Jonas Richard Richter on 17.03.22.
+  
+*/
+
+// MARK: - Records Collection
+
+"RECORDS_COLLECTION_TITLE" = "Sammlung";
