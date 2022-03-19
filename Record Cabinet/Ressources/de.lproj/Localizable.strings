@@ -9,6 +9,7 @@
 // MARK: - Records Collection
 
 "RECORDS_COLLECTION_TITLE" = "Mediathek";
+"RECORDS_COLLECTION_ADD_RECORD_BUTTON" = "Platte hinzufügen";
 
 // MARK: - Search
 

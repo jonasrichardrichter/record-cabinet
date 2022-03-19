@@ -35,6 +35,7 @@ class RecordsCollectionViewController: UIViewController {
         
         self.setupView()
         self.configureDataSource()
+        self.createAddRecordButton()
 
         // Core Data
         container = NSPersistentContainer(name: "Record_Cabinet")
@@ -44,6 +45,8 @@ class RecordsCollectionViewController: UIViewController {
                 self.logger.error("Unresolved error: \(error)")
             }
         }
+        
+        self.loadSavedData()
     }
     
     func saveContext() {
@@ -53,6 +56,25 @@ class RecordsCollectionViewController: UIViewController {
             } catch {
                 print("An error occurred while saving: \(error)")
             }
+        }
+    }
+    
+    func loadSavedData() {
+        let request  = Record.createFetchRequest()
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sort]
+        
+        do {
+            let records = try self.container.viewContext.fetch(request)
+            self.logger.trace("Fetched \(records.count) records")
+            
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(records)
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+            
+        } catch {
+            self.logger.error("An error happened: \(error)")
         }
     }
     
@@ -67,7 +89,7 @@ class RecordsCollectionViewController: UIViewController {
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .systemBackground
         self.view.addSubview(self.collectionView)
-        self.logger.trace("View setup successfull")
+        self.logger.trace("View setup successful")
     }
 }
 
@@ -108,5 +130,29 @@ extension RecordsCollectionViewController {
         }
         
         self.logger.trace("Configured UICollectionViewDiffableDataSource")
+    }
+}
+
+// MARK: - Add Record Button
+#warning("Incomplete implementation")
+extension RecordsCollectionViewController {
+    
+    func createAddRecordButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: UIImage(systemName: "plus.circle.fill"), primaryAction: UIAction(handler: { action in
+            self.addDemoData()
+            self.logger.trace("Tapped 'Add Record' button")
+        }), menu: nil)
+    }
+    
+    func addDemoData() {
+        let demoRecord = Record(context: self.container.viewContext)
+        demoRecord.name = "Test Record"
+        demoRecord.artist = "Test Artist"
+        demoRecord.releaseDate = Date()
+        
+        self.saveContext()
+        self.loadSavedData()
+        
+        self.logger.debug("Added demo data")
     }
 }
