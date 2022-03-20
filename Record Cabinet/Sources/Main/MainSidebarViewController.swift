@@ -68,7 +68,6 @@ extension MainSidebarViewController {
     func configureCollectionView() {
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.createLayout())
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.collectionView.backgroundColor = .systemGroupedBackground
         self.collectionView.delegate = self
         self.view.addSubview(self.collectionView)
     }

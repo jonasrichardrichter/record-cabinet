@@ -25,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         splitViewController.setViewController(sidebarController, for: .primary)
         splitViewController.setViewController(contentController, for: .secondary)
         splitViewController.preferredSplitBehavior = .tile
+        splitViewController.primaryBackgroundStyle = .sidebar
+        
         splitViewController.setViewController(tabBarController, for: .compact)
         
         window?.rootViewController = splitViewController
@@ -32,13 +34,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 #if targetEnvironment(macCatalyst)
         
+        splitViewController.displayModeButtonVisibility = .never
+        splitViewController.preferredPrimaryColumnWidth = CGFloat(230)
+        sidebarController.navigationController?.isNavigationBarHidden = true
+        contentController.navigationController?.isNavigationBarHidden = true
+        
+        
         let toolbar = NSToolbar(identifier: NSToolbar.Identifier("SceneDelegate.Toolbar"))
         toolbar.delegate = self
         toolbar.displayMode = .iconOnly
         toolbar.allowsUserCustomization = false
         
         scene.titlebar?.toolbar = toolbar
-        scene.titlebar?.toolbarStyle = .unified
+        scene.titlebar?.toolbarStyle = .automatic
         
 #endif
         window?.makeKeyAndVisible()
