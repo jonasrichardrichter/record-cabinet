@@ -96,14 +96,27 @@ class RecordsCollectionViewController: UIViewController {
 // MARK: - Layout
 extension RecordsCollectionViewController {
     
+    #warning("Improve layout for iPad and Mac device (dynamic)")
     // Two Item Grid
     private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        #warning("Fix height not correct")
+        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(210))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        
+        let group: NSCollectionLayoutGroup
+        
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        case .pad:
+            group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 6)
+        default:
+            group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        }
+        
+        
 
         let spacing = CGFloat(20)
         group.interItemSpacing = .fixed(spacing)

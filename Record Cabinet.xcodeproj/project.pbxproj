@@ -18,6 +18,8 @@
 		41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073627E60ACD001D10FC /* SearchViewController.swift */; };
 		41E6073A27E61097001D10FC /* Record+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073827E61097001D10FC /* Record+CoreDataClass.swift */; };
 		41E6073B27E61097001D10FC /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073927E61097001D10FC /* Record+CoreDataProperties.swift */; };
+		41E6074027E644F2001D10FC /* MainSidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073F27E644F2001D10FC /* MainSidebarViewController.swift */; };
+		41E6074227E6483C001D10FC /* SceneDelegate+NSToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6074127E6483C001D10FC /* SceneDelegate+NSToolbar.swift */; };
 		41F9064027E39BF300D65E3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F9063F27E39BF300D65E3F /* AppDelegate.swift */; };
 		41F9064227E39BF300D65E3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F9064127E39BF300D65E3F /* SceneDelegate.swift */; };
 		41F9064A27E39BF300D65E3F /* Record_Cabinet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41F9064827E39BF300D65E3F /* Record_Cabinet.xcdatamodeld */; };
@@ -35,6 +37,9 @@
 		41E6073627E60ACD001D10FC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		41E6073827E61097001D10FC /* Record+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataClass.swift"; sourceTree = "<group>"; };
 		41E6073927E61097001D10FC /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		41E6073D27E642F0001D10FC /* Record Cabinet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Record Cabinet.entitlements"; sourceTree = "<group>"; };
+		41E6073F27E644F2001D10FC /* MainSidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSidebarViewController.swift; sourceTree = "<group>"; };
+		41E6074127E6483C001D10FC /* SceneDelegate+NSToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+NSToolbar.swift"; sourceTree = "<group>"; };
 		41F9063C27E39BF300D65E3F /* Record Cabinet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Record Cabinet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F9063F27E39BF300D65E3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41F9064127E39BF300D65E3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +95,7 @@
 			children = (
 				41F9063F27E39BF300D65E3F /* AppDelegate.swift */,
 				41F9064127E39BF300D65E3F /* SceneDelegate.swift */,
+				41E6074127E6483C001D10FC /* SceneDelegate+NSToolbar.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */,
+				41E6073F27E644F2001D10FC /* MainSidebarViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 		41F9063E27E39BF300D65E3F /* Record Cabinet */ = {
 			isa = PBXGroup;
 			children = (
+				41E6073D27E642F0001D10FC /* Record Cabinet.entitlements */,
 				41665AE227E39F8B0022BCAB /* Ressources */,
 				41665AE127E39F800022BCAB /* Sources */,
 				41F9065027E39BF400D65E3F /* Info.plist */,
@@ -241,7 +249,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E6074027E644F2001D10FC /* MainSidebarViewController.swift in Sources */,
 				41F9064027E39BF300D65E3F /* AppDelegate.swift in Sources */,
+				41E6074227E6483C001D10FC /* SceneDelegate+NSToolbar.swift in Sources */,
 				41665AF527E3B36A0022BCAB /* String+Localized.swift in Sources */,
 				41665AF327E3A4360022BCAB /* RecordsCollectionViewController.swift in Sources */,
 				41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */,
@@ -390,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Record Cabinet/Record Cabinet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FAEXU5NUQ2;
@@ -408,9 +419,10 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.jonasrichter.recordcabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -419,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Record Cabinet/Record Cabinet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FAEXU5NUQ2;
@@ -437,9 +450,10 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.jonasrichter.recordcabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
