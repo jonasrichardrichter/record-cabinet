@@ -14,3 +14,8 @@
 // MARK: - Search
 
 "SEARCH_TITLE" = "Suche";
+
+// MARK: - Sidebar
+
+"SIDEBAR_LIBRARY_HEADER" = "Mediathek";
+"SIDEBAR_LIBRARY_ALL" = "Platten";

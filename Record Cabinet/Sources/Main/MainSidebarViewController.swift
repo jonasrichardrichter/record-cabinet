@@ -48,6 +48,7 @@ class MainSidebarViewController: UIViewController {
     // MARK: - Properties
     
     private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>!
     
     // MARK: - Overrides
     
@@ -55,17 +56,19 @@ class MainSidebarViewController: UIViewController {
         super.viewDidLoad()
         
         self.configureCollectionView()
+        self.configureDataSource()
+        self.applyInitialSnapshot()
     }
 }
 
-// MARK: - CollectionView Configuration and Layout
+// MARK: - UICollectionView
 
 extension MainSidebarViewController {
     
     func configureCollectionView() {
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.createLayout())
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.collectionView.backgroundColor = .systemBackground
+        self.collectionView.backgroundColor = .systemGroupedBackground
         self.collectionView.delegate = self
         self.view.addSubview(self.collectionView)
     }
@@ -87,4 +90,105 @@ extension MainSidebarViewController {
 
 extension MainSidebarViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let sidebarItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
+    
+        switch SidebarSection(rawValue: indexPath.section) {
+        case .library:
+            self.didSelectLibraryItem(sidebarItem, at: indexPath)
+        case .search:
+            self.didSelectSearchItem(sidebarItem, at: indexPath)
+        case .none:
+            self.collectionView.deselectItem(at: indexPath, animated: true)
+        }
+    }
+    
+    private func didSelectLibraryItem(_: SidebarItem, at indexPath: IndexPath) {
+        guard
+            let splitViewController = self.splitViewController
+        else { return }
+        
+        splitViewController.setViewController(RecordsCollectionViewController(), for: .secondary)
+    }
+    
+    private func didSelectSearchItem(_: SidebarItem, at indexPath: IndexPath) {
+        guard
+            let splitViewController = self.splitViewController
+        else { return }
+        
+        splitViewController.setViewController(SearchViewController(), for: .secondary)
+    }
+    
+}
+
+// MARK: - UICollectionViewDiffableDataSource
+
+extension MainSidebarViewController {
+    
+    func configureDataSource() {
+        let headerRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> {
+            (cell, indexPath, item) in
+            
+            var contentConfiguration = UIListContentConfiguration.sidebarHeader()
+            contentConfiguration.text = item.title
+            contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .subheadline)
+            contentConfiguration.textProperties.color = .secondaryLabel
+            
+            cell.contentConfiguration = contentConfiguration
+            cell.accessories = [.outlineDisclosure()]
+        }
+        
+        let expandableRowRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> {
+            (cell, indexPath, item) in
+            
+            var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
+            contentConfiguration.text = item.title
+            contentConfiguration.secondaryText = item.subtitle
+            contentConfiguration.image = item.image
+            
+            cell.contentConfiguration = contentConfiguration
+            cell.accessories = [.outlineDisclosure()]
+        }
+        
+        let rowRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> {
+            (cell, indexPath, item) in
+            
+            var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
+            contentConfiguration.text = item.title
+            contentConfiguration.secondaryText = item.subtitle
+            contentConfiguration.image = item.image
+            
+            cell.contentConfiguration = contentConfiguration
+        }
+        
+        self.dataSource = UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>(collectionView: self.collectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell in
+            switch itemIdentifier.type {
+            case .header:
+                return collectionView.dequeueConfiguredReusableCell(using: headerRegistration, for: indexPath, item: itemIdentifier)
+            case .expandableRow:
+                return collectionView.dequeueConfiguredReusableCell(using: expandableRowRegistration, for: indexPath, item: itemIdentifier)
+            case .row:
+                return collectionView.dequeueConfiguredReusableCell(using: rowRegistration, for: indexPath, item: itemIdentifier)
+            }
+        }
+    }
+    
+    private func librarySnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
+        
+        let header = SidebarItem.header(title: "SIDEBAR_LIBRARY_HEADER".localized())
+        let items: [SidebarItem] = [
+            .row(title: "SIDEBAR_LIBRARY_ALL".localized(), subtitle: nil, image: UIImage(systemName: "square.stack"))
+        ]
+        
+        snapshot.append([header])
+        snapshot.expand([header])
+        snapshot.append(items, to: header)
+        
+        return snapshot
+    }
+    
+    private func applyInitialSnapshot() {
+        self.dataSource.apply(self.librarySnapshot(), to: .library, animatingDifferences: false)
+    }
 }
