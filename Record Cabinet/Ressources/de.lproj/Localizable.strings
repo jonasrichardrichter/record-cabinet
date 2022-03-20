@@ -9,7 +9,7 @@
 // MARK: - Records Collection
 
 "RECORDS_COLLECTION_TITLE" = "Mediathek";
-"RECORDS_COLLECTION_ADD_RECORD_BUTTON" = "Platte hinzufügen";
+"RECORDS_COLLECTION_ADD_RECORD_BUTTON" = "Schallplatte hinzufügen";
 
 // MARK: - Search
 
@@ -18,4 +18,4 @@
 // MARK: - Sidebar
 
 "SIDEBAR_LIBRARY_HEADER" = "Mediathek";
-"SIDEBAR_LIBRARY_ALL" = "Platten";
+"SIDEBAR_LIBRARY_ALL" = "Alle Schallplatten";

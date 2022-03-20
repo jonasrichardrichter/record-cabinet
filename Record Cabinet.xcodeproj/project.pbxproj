@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4129F73627E3B41000D3B3F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4129F73827E3B41000D3B3F8 /* Localizable.strings */; };
+		415E050D27E7B1A7001145A2 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E050C27E7B1A7001145A2 /* MainNavigationController.swift */; };
 		41665AE727E3A1630022BCAB /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 41665AE627E3A1630022BCAB /* Logging */; };
 		41665AEA27E3A18F0022BCAB /* Logger+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AE927E3A18F0022BCAB /* Logger+Init.swift */; };
 		41665AEF27E3A2910022BCAB /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		4129F73727E3B41000D3B3F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		415E050C27E7B1A7001145A2 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		41665AE927E3A18F0022BCAB /* Logger+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Init.swift"; sourceTree = "<group>"; };
 		41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		41665AF227E3A4360022BCAB /* RecordsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */,
 				41E6073F27E644F2001D10FC /* MainSidebarViewController.swift */,
+				415E050C27E7B1A7001145A2 /* MainNavigationController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				41F9064027E39BF300D65E3F /* AppDelegate.swift in Sources */,
 				41E6074227E6483C001D10FC /* SceneDelegate+NSToolbar.swift in Sources */,
 				41665AF527E3B36A0022BCAB /* String+Localized.swift in Sources */,
+				415E050D27E7B1A7001145A2 /* MainNavigationController.swift in Sources */,
 				41665AF327E3A4360022BCAB /* RecordsCollectionViewController.swift in Sources */,
 				41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */,
 				41665AEA27E3A18F0022BCAB /* Logger+Init.swift in Sources */,

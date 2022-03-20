@@ -10,7 +10,7 @@ import Logging
 import CoreData
 
 class RecordsCollectionViewController: UIViewController {
-
+    
     enum Section {
         case main
     }
@@ -29,14 +29,14 @@ class RecordsCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        #if DEBUG
+#if DEBUG
         self.logger.logLevel = .trace
-        #endif
+#endif
         
         self.setupView()
         self.configureDataSource()
         self.createAddRecordButton()
-
+        
         // Core Data
         container = NSPersistentContainer(name: "Record_Cabinet")
         
@@ -85,51 +85,41 @@ class RecordsCollectionViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: self.createLayout())
+        let layout = UICollectionViewFlowLayout()
+        
+        self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .systemBackground
+        self.collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        
         self.view.addSubview(self.collectionView)
         self.logger.trace("View setup successful")
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        var columns = 2
+        
+        guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        
+        while self.view.bounds.size.width / CGFloat(columns) > CGFloat(200) {
+            columns += 1
+        }
+        
+        let frame = self.view.bounds.inset(by: self.collectionView.contentInset)
+        
+        let itemSize = (frame.width - CGFloat(20)*CGFloat(columns-1)) / CGFloat(columns)
+        
+        layout.itemSize = CGSize(width: itemSize, height: itemSize+50)
+        layout.minimumLineSpacing = CGFloat(20)
+        layout.minimumInteritemSpacing = 0
+    }
+    
 }
 
 // MARK: - Layout
 extension RecordsCollectionViewController {
-    
-    #warning("Improve layout for iPad and Mac device (dynamic)")
-    // Two Item Grid
-    private func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(210))
-        
-        let group: NSCollectionLayoutGroup
-        
-        switch UIDevice.current.userInterfaceIdiom {
-        case .phone:
-            group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        case .pad:
-            group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 6)
-        default:
-            group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        }
-        
-        
-
-        let spacing = CGFloat(20)
-        group.interItemSpacing = .fixed(spacing)
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = spacing
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 0, trailing: 20)
-        
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        self.logger.trace("Created UICollectionViewLayout")
-        
-        return layout
-    }
     
     func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<RecordCollectionViewCell, Record> { (cell, indexPath, itemIdentifier) in

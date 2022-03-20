@@ -50,6 +50,8 @@ class MainSidebarViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>!
     
+    var sceneDelegate: SceneDelegate?
+    
     // MARK: - Overrides
     
     override func viewDidLoad() {
@@ -107,7 +109,10 @@ extension MainSidebarViewController: UICollectionViewDelegate {
             let splitViewController = self.splitViewController
         else { return }
         
-        splitViewController.setViewController(RecordsCollectionViewController(), for: .secondary)
+        var vcToShow = MainNavigationController(rootViewController: RecordsCollectionViewController())
+        vcToShow.sceneDelegate = self.sceneDelegate
+        
+        splitViewController.setViewController(vcToShow, for: .secondary)
     }
     
     private func didSelectSearchItem(_: SidebarItem, at indexPath: IndexPath) {
@@ -115,7 +120,10 @@ extension MainSidebarViewController: UICollectionViewDelegate {
             let splitViewController = self.splitViewController
         else { return }
         
-        splitViewController.setViewController(SearchViewController(), for: .secondary)
+        var vcToShow = MainNavigationController(rootViewController: SearchViewController())
+        vcToShow.sceneDelegate = self.sceneDelegate
+                                                
+        splitViewController.setViewController(vcToShow, for: .secondary)
     }
     
 }
@@ -187,7 +195,22 @@ extension MainSidebarViewController {
         return snapshot
     }
     
+    #warning("Implement Search Bar for Mac Catalyst")
+    private func searchSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
+        
+        let items: [SidebarItem] = [
+            .row(title: "Search", subtitle: nil, image: nil)
+        ]
+        
+        snapshot.append(items)
+        snapshot.expand(items)
+        
+        return snapshot
+    }
+    
     private func applyInitialSnapshot() {
+        self.dataSource.apply(self.searchSnapshot(), to: .search, animatingDifferences: false)
         self.dataSource.apply(self.librarySnapshot(), to: .library, animatingDifferences: false)
     }
 }

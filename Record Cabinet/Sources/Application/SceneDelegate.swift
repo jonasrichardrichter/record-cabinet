@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    let contentController = UIViewController()
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -20,10 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let splitViewController = UISplitViewController(style: .doubleColumn)
         let tabBarController = MainTabBarViewController()
         let sidebarController = MainSidebarViewController()
-        let contentController = UIViewController()
+        
+        sidebarController.sceneDelegate = self
         
         splitViewController.setViewController(sidebarController, for: .primary)
-        splitViewController.setViewController(contentController, for: .secondary)
+        splitViewController.setViewController(self.contentController, for: .secondary)
         splitViewController.preferredSplitBehavior = .tile
         splitViewController.primaryBackgroundStyle = .sidebar
         
@@ -36,9 +38,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         splitViewController.displayModeButtonVisibility = .never
         splitViewController.preferredPrimaryColumnWidth = CGFloat(230)
-        sidebarController.navigationController?.isNavigationBarHidden = true
-        contentController.navigationController?.isNavigationBarHidden = true
+        splitViewController.minimumPrimaryColumnWidth = CGFloat(200)
         
+        sidebarController.navigationController?.isNavigationBarHidden = true
+        self.contentController.navigationController?.isNavigationBarHidden = true
         
         let toolbar = NSToolbar(identifier: NSToolbar.Identifier("SceneDelegate.Toolbar"))
         toolbar.delegate = self
