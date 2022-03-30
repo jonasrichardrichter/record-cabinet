@@ -60,6 +60,10 @@ class MainSidebarViewController: UIViewController {
         self.configureCollectionView()
         self.configureDataSource()
         self.applyInitialSnapshot()
+        
+        // Select Library at start
+        
+        
     }
 }
 
@@ -109,7 +113,7 @@ extension MainSidebarViewController: UICollectionViewDelegate {
             let splitViewController = self.splitViewController
         else { return }
         
-        var vcToShow = MainNavigationController(rootViewController: RecordsCollectionViewController())
+        let vcToShow = MainNavigationController(rootViewController: LibraryCollectionViewController())
         vcToShow.sceneDelegate = self.sceneDelegate
         
         splitViewController.setViewController(vcToShow, for: .secondary)
@@ -120,7 +124,7 @@ extension MainSidebarViewController: UICollectionViewDelegate {
             let splitViewController = self.splitViewController
         else { return }
         
-        var vcToShow = MainNavigationController(rootViewController: SearchViewController())
+        let vcToShow = MainNavigationController(rootViewController: SearchViewController())
         vcToShow.sceneDelegate = self.sceneDelegate
                                                 
         splitViewController.setViewController(vcToShow, for: .secondary)
@@ -185,7 +189,9 @@ extension MainSidebarViewController {
         
         let header = SidebarItem.header(title: "SIDEBAR_LIBRARY_HEADER".localized())
         let items: [SidebarItem] = [
-            .row(title: "SIDEBAR_LIBRARY_ALL".localized(), subtitle: nil, image: UIImage(systemName: "square.stack"))
+            .row(title: "SIDEBAR_LIBRARY_ALL".localized(), subtitle: nil, image: UIImage(systemName: "square.stack")),
+            .row(title: "SIDEBAR_LIBRARY_ARTISTS".localized(), subtitle: nil, image: UIImage(systemName: "music.mic")),
+            .row(title: "SIDEBAR_LIBRARY_GENRE".localized(), subtitle: nil, image: UIImage(systemName: "tray.full"))
         ]
         
         snapshot.append([header])

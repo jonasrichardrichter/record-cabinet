@@ -6,14 +6,17 @@
 //
 
 import Foundation
+import UIKit
 
 #if targetEnvironment(macCatalyst)
-import AppKit
+extension NSToolbarItem.Identifier {
+    static let newItem = NSToolbarItem.Identifier("eu.jonasrichter.recordcabinet.newitem")
+}
 
 extension SceneDelegate: NSToolbarDelegate {
     
     func toolbarItems() -> [NSToolbarItem.Identifier] {
-        return [.toggleSidebar]
+        return [.toggleSidebar, .flexibleSpace , .newItem]
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
@@ -25,7 +28,14 @@ extension SceneDelegate: NSToolbarDelegate {
     }
     
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
-        return NSToolbarItem(itemIdentifier: itemIdentifier)
+        if itemIdentifier == .newItem {
+            let barItem = UIBarButtonItem(title: "Neue Schallplatte hinzufügen", image: UIImage(systemName: "plus"), primaryAction: nil, menu: nil)
+            let item = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: barItem)
+            
+            return item
+        } else {
+            return NSToolbarItem(itemIdentifier: itemIdentifier)
+        }
     }
 }
 #endif

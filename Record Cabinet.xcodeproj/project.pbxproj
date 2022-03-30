@@ -12,9 +12,10 @@
 		41665AE727E3A1630022BCAB /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 41665AE627E3A1630022BCAB /* Logging */; };
 		41665AEA27E3A18F0022BCAB /* Logger+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AE927E3A18F0022BCAB /* Logger+Init.swift */; };
 		41665AEF27E3A2910022BCAB /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */; };
-		41665AF327E3A4360022BCAB /* RecordsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AF227E3A4360022BCAB /* RecordsCollectionViewController.swift */; };
+		41665AF327E3A4360022BCAB /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AF227E3A4360022BCAB /* LibraryCollectionViewController.swift */; };
 		41665AF527E3B36A0022BCAB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AF427E3B36A0022BCAB /* String+Localized.swift */; };
 		41745DFE27E4C2F400E24B8E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */; };
+		41B3FE0227EF985100D04AA0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B3FE0127EF985100D04AA0 /* CloudKit.framework */; };
 		41E6073527E6051E001D10FC /* RecordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */; };
 		41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073627E60ACD001D10FC /* SearchViewController.swift */; };
 		41E6073A27E61097001D10FC /* Record+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073827E61097001D10FC /* Record+CoreDataClass.swift */; };
@@ -25,6 +26,7 @@
 		41F9064227E39BF300D65E3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F9064127E39BF300D65E3F /* SceneDelegate.swift */; };
 		41F9064A27E39BF300D65E3F /* Record_Cabinet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41F9064827E39BF300D65E3F /* Record_Cabinet.xcdatamodeld */; };
 		41F9064C27E39BF400D65E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41F9064B27E39BF400D65E3F /* Assets.xcassets */; };
+		41FF35CA27EF2E20004C8E94 /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FF35C927EF2E20004C8E94 /* AddRecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,9 +34,10 @@
 		415E050C27E7B1A7001145A2 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		41665AE927E3A18F0022BCAB /* Logger+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Init.swift"; sourceTree = "<group>"; };
 		41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		41665AF227E3A4360022BCAB /* RecordsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsCollectionViewController.swift; sourceTree = "<group>"; };
+		41665AF227E3A4360022BCAB /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		41665AF427E3B36A0022BCAB /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		41B3FE0127EF985100D04AA0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCollectionViewCell.swift; sourceTree = "<group>"; };
 		41E6073627E60ACD001D10FC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		41E6073827E61097001D10FC /* Record+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		41F9064927E39BF300D65E3F /* Record_Cabinet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Record_Cabinet.xcdatamodel; sourceTree = "<group>"; };
 		41F9064B27E39BF400D65E3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41F9065027E39BF400D65E3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41FF35C927EF2E20004C8E94 /* AddRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41665AE727E3A1630022BCAB /* Logging in Frameworks */,
+				41B3FE0227EF985100D04AA0 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +78,7 @@
 		41665AE127E39F800022BCAB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				41AD58B327F493E800A0E37B /* Views */,
 				41E6073C27E610B2001D10FC /* Entities */,
 				41665AE827E3A1710022BCAB /* Extensions */,
 				41665AF027E3A4140022BCAB /* Scenes */,
@@ -124,19 +130,43 @@
 		41665AF027E3A4140022BCAB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				41FF35C827EF2DE5004C8E94 /* Add Record */,
 				4129F73927E3B54500D3B3F8 /* Search */,
-				41665AF127E3A4190022BCAB /* Records Collection */,
+				41665AF127E3A4190022BCAB /* Library */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		41665AF127E3A4190022BCAB /* Records Collection */ = {
+		41665AF127E3A4190022BCAB /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				41665AF227E3A4360022BCAB /* RecordsCollectionViewController.swift */,
+				41665AF227E3A4360022BCAB /* LibraryCollectionViewController.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		41AD58B327F493E800A0E37B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				41AD58B427F493EF00A0E37B /* Universal */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		41AD58B427F493EF00A0E37B /* Universal */ = {
+			isa = PBXGroup;
+			children = (
 				41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */,
 			);
-			path = "Records Collection";
+			path = Universal;
+			sourceTree = "<group>";
+		};
+		41B3FE0027EF985100D04AA0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41B3FE0127EF985100D04AA0 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		41E6073C27E610B2001D10FC /* Entities */ = {
@@ -153,6 +183,7 @@
 			children = (
 				41F9063E27E39BF300D65E3F /* Record Cabinet */,
 				41F9063D27E39BF300D65E3F /* Products */,
+				41B3FE0027EF985100D04AA0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,6 +205,14 @@
 				41F9064827E39BF300D65E3F /* Record_Cabinet.xcdatamodeld */,
 			);
 			path = "Record Cabinet";
+			sourceTree = "<group>";
+		};
+		41FF35C827EF2DE5004C8E94 /* Add Record */ = {
+			isa = PBXGroup;
+			children = (
+				41FF35C927EF2E20004C8E94 /* AddRecordViewController.swift */,
+			);
+			path = "Add Record";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +296,8 @@
 				41E6074227E6483C001D10FC /* SceneDelegate+NSToolbar.swift in Sources */,
 				41665AF527E3B36A0022BCAB /* String+Localized.swift in Sources */,
 				415E050D27E7B1A7001145A2 /* MainNavigationController.swift in Sources */,
-				41665AF327E3A4360022BCAB /* RecordsCollectionViewController.swift in Sources */,
+				41665AF327E3A4360022BCAB /* LibraryCollectionViewController.swift in Sources */,
+				41FF35CA27EF2E20004C8E94 /* AddRecordViewController.swift in Sources */,
 				41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */,
 				41665AEA27E3A18F0022BCAB /* Logger+Init.swift in Sources */,
 				41665AEF27E3A2910022BCAB /* MainTabBarViewController.swift in Sources */,
@@ -410,6 +450,7 @@
 				DEVELOPMENT_TEAM = FAEXU5NUQ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Record Cabinet/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -441,6 +482,7 @@
 				DEVELOPMENT_TEAM = FAEXU5NUQ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Record Cabinet/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

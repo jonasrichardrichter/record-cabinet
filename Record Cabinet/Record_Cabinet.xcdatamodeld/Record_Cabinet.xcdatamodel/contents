@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Collection" representedClassName="Collection" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CollectionItem" inverseName="collection" inverseEntity="CollectionItem"/>
+    </entity>
+    <entity name="CollectionItem" representedClassName="CollectionItem" syncable="YES" codeGenerationType="class">
+        <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="collection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Collection" inverseName="items" inverseEntity="Collection"/>
+        <relationship name="record" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="collectionItems" inverseEntity="Record"/>
+    </entity>
     <entity name="Record" representedClassName="Record" syncable="YES">
         <attribute name="artist" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="collectionItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CollectionItem" inverseName="record" inverseEntity="CollectionItem"/>
     </entity>
     <elements>
-        <element name="Record" positionX="-193.45703125" positionY="-18" width="130.45703125" height="103"/>
+        <element name="Record" positionX="-193.45703125" positionY="-18" width="130.45703125" height="104"/>
+        <element name="Collection" positionX="-180" positionY="18" width="128" height="74"/>
+        <element name="CollectionItem" positionX="-171" positionY="36" width="128" height="89"/>
     </elements>
 </model>

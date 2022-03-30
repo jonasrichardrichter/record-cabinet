@@ -15,24 +15,26 @@ class MainNavigationController: UINavigationController {
         super.viewDidLoad()
         
 #if targetEnvironment(macCatalyst)
-        self.isNavigationBarHidden = true
-        
-        self.sceneDelegate?.window?.windowScene?.title = self.topViewController?.title
+        self.setupMacCatalyst()
 #endif
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 #if targetEnvironment(macCatalyst)
-        self.sceneDelegate?.window?.windowScene?.title = self.topViewController?.title
+        self.setupMacCatalyst()
 #endif
     }
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        
+        self.setupMacCatalyst()
+    }
+    
+    func setupMacCatalyst() {
 #if targetEnvironment(macCatalyst)
         self.sceneDelegate?.window?.windowScene?.title = self.topViewController?.title
+        self.isNavigationBarHidden = true
 #endif
     }
 }

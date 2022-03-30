@@ -12,7 +12,7 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let recordsVC = UINavigationController(rootViewController: RecordsCollectionViewController())
+        let recordsVC = UINavigationController(rootViewController: LibraryCollectionViewController())
         recordsVC.tabBarItem = UITabBarItem(title: "RECORDS_COLLECTION_TITLE".localized(), image: UIImage(systemName: "square.stack.fill"), selectedImage: UIImage(systemName: "square.stack.fill"))
         
         let searchVC = UINavigationController(rootViewController: SearchViewController())

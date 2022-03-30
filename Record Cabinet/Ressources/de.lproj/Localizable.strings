@@ -19,3 +19,5 @@
 
 "SIDEBAR_LIBRARY_HEADER" = "Mediathek";
 "SIDEBAR_LIBRARY_ALL" = "Alle Schallplatten";
+"SIDEBAR_LIBRARY_ARTISTS" = "Künstler:innen";
+"SIDEBAR_LIBRARY_GENRE" = "Genre";

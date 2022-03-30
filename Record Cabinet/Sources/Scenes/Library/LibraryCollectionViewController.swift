@@ -9,7 +9,7 @@ import UIKit
 import Logging
 import CoreData
 
-class RecordsCollectionViewController: UIViewController {
+class LibraryCollectionViewController: UIViewController {
     
     enum Section {
         case main
@@ -96,6 +96,7 @@ class RecordsCollectionViewController: UIViewController {
         self.logger.trace("View setup successful")
     }
     
+    #warning("Implement height calc")
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -103,7 +104,7 @@ class RecordsCollectionViewController: UIViewController {
         
         guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
-        while self.view.bounds.size.width / CGFloat(columns) > CGFloat(200) {
+        while self.view.bounds.size.width / CGFloat(columns) > CGFloat(270) {
             columns += 1
         }
         
@@ -119,7 +120,7 @@ class RecordsCollectionViewController: UIViewController {
 }
 
 // MARK: - Layout
-extension RecordsCollectionViewController {
+extension LibraryCollectionViewController {
     
     func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<RecordCollectionViewCell, Record> { (cell, indexPath, itemIdentifier) in
@@ -138,19 +139,21 @@ extension RecordsCollectionViewController {
 
 // MARK: - Add Record Button
 #warning("Incomplete implementation")
-extension RecordsCollectionViewController {
+extension LibraryCollectionViewController {
     
     func createAddRecordButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: UIImage(systemName: "plus.circle.fill"), primaryAction: UIAction(handler: { action in
-            self.addDemoData()
-            self.logger.trace("Tapped 'Add Record' button")
-        }), menu: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: UIImage(systemName: "plus.circle.fill"), primaryAction: nil, menu: UIMenu(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: nil, identifier: nil, options: [], children: [
+            UIAction(title: "Demodaten einfügen", image: nil, handler: { action in
+                self.addDemoData()
+                self.logger.trace("Tapped 'Add Record' button")
+            })
+        ]))
     }
     
     func addDemoData() {
         let demoRecord = Record(context: self.container.viewContext)
-        demoRecord.name = "Test Record"
-        demoRecord.artist = "Test Artist"
+        demoRecord.name = "Großartiges Album"
+        demoRecord.artist = "Großartiger Künstler"
         demoRecord.releaseDate = Date()
         
         self.saveContext()
