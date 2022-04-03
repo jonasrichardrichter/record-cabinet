@@ -6,10 +6,16 @@
   
 */
 
+// MARK: - Universal
+
+"CANCEL" = "Abbrechen";
+"ADD" = "Hinzufügen";
+
 // MARK: - Records Collection
 
 "RECORDS_COLLECTION_TITLE" = "Mediathek";
 "RECORDS_COLLECTION_ADD_RECORD_BUTTON" = "Schallplatte hinzufügen";
+"RECORDS_COLLECTION_ADD_CONTENT_BUTTON" = "Neue Inhalte hinzufügen";
 
 // MARK: - Search
 
@@ -21,3 +27,10 @@
 "SIDEBAR_LIBRARY_ALL" = "Alle Schallplatten";
 "SIDEBAR_LIBRARY_ARTISTS" = "Künstler:innen";
 "SIDEBAR_LIBRARY_GENRE" = "Genre";
+"SIDEBAR_SEARCH" = "Suche";
+
+// MARK: - Add Record
+
+"ADD_RECORD_TITLE" = "Neue Schallplatte";
+"ADD_RECORD_NAME_PLACEHOLDER" = "Name des Albums";
+"ADD_RECORD_ARTIST_PLACEHOLDER" = "Künstler:in des Albums";

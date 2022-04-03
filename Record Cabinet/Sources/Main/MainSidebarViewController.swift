@@ -206,7 +206,7 @@ extension MainSidebarViewController {
         var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
         
         let items: [SidebarItem] = [
-            .row(title: "Search", subtitle: nil, image: nil)
+            .row(title: "SIDEBAR_SEARCH".localized(), subtitle: nil, image: UIImage(systemName: "magnifyingglass"))
         ]
         
         snapshot.append(items)

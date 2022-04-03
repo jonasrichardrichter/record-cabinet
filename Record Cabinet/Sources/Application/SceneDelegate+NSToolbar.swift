@@ -29,7 +29,15 @@ extension SceneDelegate: NSToolbarDelegate {
     
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         if itemIdentifier == .newItem {
-            let barItem = UIBarButtonItem(title: "Neue Schallplatte hinzufügen", image: UIImage(systemName: "plus"), primaryAction: nil, menu: nil)
+            let barItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "plus"), primaryAction: nil, menu: UIMenu(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: UIImage(systemName: "plus"), identifier: .toolbar, options: .displayInline, children: [
+                UIAction(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: nil, handler: { action in
+                    
+                }),
+                UIAction(title: "RECORDS_COLLECTION_ADD_COLLECTION_BUTTON".localized(), image: nil, handler: { action in
+                    
+                })
+            ]))
+            
             let item = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: barItem)
             
             return item
