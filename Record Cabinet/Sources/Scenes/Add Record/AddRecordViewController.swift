@@ -12,10 +12,15 @@ class AddRecordViewController: UIViewController {
     
     // MARK: - Properties
     
+    lazy var contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+    
     var selectImageButton: UIButton!
     var nameTextField: UITextField!
     var artistTextField: UITextField!
     var datePicker: UIDatePicker!
+    
+    var scrollView: UIScrollView!
+    var containerView: UIView!
     
     var logger = Logger(for: "AddRecordViewController")
     
@@ -50,8 +55,16 @@ class AddRecordViewController: UIViewController {
     }
     
     func setupView() {
-        self.view = UIScrollView()
         self.view.backgroundColor = .systemBackground
+        
+        self.scrollView = UIScrollView(frame: .zero)
+        self.scrollView.backgroundColor = .systemBackground
+        self.scrollView.frame = self.view.bounds
+        self.scrollView.contentSize = self.contentSize
+        
+        self.containerView = UIView()
+        self.containerView.backgroundColor = .systemBackground
+        self.containerView.frame.size = self.contentSize
         
         self.selectImageButton = UIButton(configuration: .tinted())
         self.nameTextField = UITextField()
@@ -74,7 +87,7 @@ class AddRecordViewController: UIViewController {
         self.artistTextField.placeholder = "ADD_RECORD_ARTIST_PLACEHOLDER".localized()
         self.artistTextField.textAlignment = .center
         
-        self.datePicker.preferredDatePickerStyle = .wheels
+        self.datePicker.preferredDatePickerStyle = .compact
         self.datePicker.datePickerMode = .date
         self.datePicker.maximumDate = Date()
         
@@ -85,30 +98,34 @@ class AddRecordViewController: UIViewController {
         
         self.nameTextField.becomeFirstResponder()
         
-        self.view.addSubview(self.selectImageButton)
-        self.view.addSubview(self.nameTextField)
-        self.view.addSubview(self.artistTextField)
-        self.view.addSubview(self.datePicker)
+        self.view.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.containerView)
+        
+        self.containerView.addSubview(self.selectImageButton)
+        self.containerView.addSubview(self.nameTextField)
+        self.containerView.addSubview(self.artistTextField)
+        self.containerView.addSubview(self.datePicker)
         
         NSLayoutConstraint.activate([
-            self.selectImageButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.selectImageButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 15),
+            self.selectImageButton.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
+            self.selectImageButton.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 15),
             self.selectImageButton.heightAnchor.constraint(equalToConstant: 150),
             self.selectImageButton.widthAnchor.constraint(equalToConstant: 150),
             
-            self.nameTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.nameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            self.nameTextField.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
+            self.nameTextField.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 20),
             self.view.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor, constant: 20),
             self.nameTextField.topAnchor.constraint(equalTo: self.selectImageButton.bottomAnchor, constant: 20),
             
             self.artistTextField.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 10),
-            self.artistTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.artistTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            self.artistTextField.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
+            self.artistTextField.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 20),
             self.view.trailingAnchor.constraint(equalTo: self.artistTextField.trailingAnchor, constant: 20),
             
-            self.datePicker.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
+            self.datePicker.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 10),
             self.view.trailingAnchor.constraint(equalTo: self.datePicker.leadingAnchor, constant: 10),
-            self.datePicker.topAnchor.constraint(equalTo: self.artistTextField.bottomAnchor, constant: 15)
+            self.datePicker.topAnchor.constraint(equalTo: self.artistTextField.bottomAnchor, constant: 15),
+            self.datePicker.bottomAnchor.constraint(greaterThanOrEqualTo: self.containerView.bottomAnchor, constant: 15)
         ])
         
         self.view.invalidateIntrinsicContentSize()
