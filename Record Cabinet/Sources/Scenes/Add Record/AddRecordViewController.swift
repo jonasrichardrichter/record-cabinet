@@ -7,6 +7,7 @@
 
 import UIKit
 import Logging
+import CoreData
 
 class AddRecordViewController: UIViewController {
     
@@ -22,7 +23,25 @@ class AddRecordViewController: UIViewController {
     var scrollView: UIScrollView!
     var containerView: UIView!
     
+    var delegate: AddRecordDelegate?
+    
+    var container: NSPersistentContainer!
     var logger = Logger(for: "AddRecordViewController")
+    
+    // MARK: - NavigationItem Buttons
+    
+    lazy var leftBarButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: "CANCEL".localized(), image: nil, primaryAction: UIAction(handler: { action in
+            self.dismiss(animated: true)
+        }), menu: nil)
+    }()
+    
+    lazy var rightBarButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: "ADD".localized(), image: nil, primaryAction: UIAction(handler: { action in
+            self.logger.trace("Trying to add Record to Core Data.")
+            self.addRecordButtonAction()
+        }), menu: nil)
+    }()
     
     // MARK: - Overrides
 
@@ -31,6 +50,15 @@ class AddRecordViewController: UIViewController {
         
         self.setupNavbar()
         self.setupView()
+        
+        // Core Data
+        self.container = NSPersistentContainer(name: "Record_Cabinet")
+        
+        self.container.loadPersistentStores { storeDescription, error in
+            if let error = error {
+                self.logger.error("Unresolved error: \(error)")
+            }
+        }
     }
     
     // MARK: - View Setup
@@ -42,14 +70,9 @@ class AddRecordViewController: UIViewController {
         self.isModalInPresentation = true
         
         self.navigationItem.leftItemsSupplementBackButton = false
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL".localized(), image: nil, primaryAction: UIAction(handler: { action in
-            self.dismiss(animated: true)
-        }), menu: nil)
+        self.navigationItem.leftBarButtonItem = self.leftBarButton
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD".localized(), image: nil, primaryAction: UIAction(handler: { action in
-            self.logger.trace("Trying to add Record to Core Data.")
-            self.addRecordButtonAction()
-        }), menu: nil)
+        self.navigationItem.rightBarButtonItem = self.rightBarButton
         self.navigationItem.rightBarButtonItem?.style = .done
         
     }
@@ -146,5 +169,43 @@ class AddRecordViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.loadingSpinner)
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         
+        if self.nameTextField.text.orEmpty().isEmpty {
+            let alert = UIAlertController(title: "ALERT_ERROR".localized(), message: "ADD_RECORD_ALERT_NO_NAME".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel))
+            self.present(alert, animated: true)
+            
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            self.navigationItem.rightBarButtonItem = self.rightBarButton
+            
+            return
+        }
+        
+        if self.artistTextField.text.orEmpty().isEmpty {
+            let alert = UIAlertController(title: "ALERT_ERROR".localized(), message: "ADD_RECORD_ALERT_NO_ARTIST".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel))
+            self.present(alert, animated: true)
+            
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            self.navigationItem.rightBarButtonItem = self.rightBarButton
+            
+            return
+        }
+        
+        let record = Record(context: self.container.viewContext)
+        
+        record.name = self.nameTextField.text.orEmpty()
+        record.artist = self.artistTextField.text.orEmpty()
+        record.releaseDate = Date()
+        
+        do {
+            try self.container.viewContext.save()
+        } catch {
+            let alert = UIAlertController(title: "ALERT_ERROR".localized(), message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel))
+            self.present(alert, animated: true)
+            return
+        }
+        self.delegate?.reloadData()
+        self.dismiss(animated: true)
     }
 }

@@ -145,6 +145,7 @@ extension LibraryCollectionViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "RECORDS_COLLECTION_ADD_CONTENT_BUTTON".localized(), image: UIImage(systemName: "plus.circle.fill"), primaryAction: nil, menu: UIMenu(title: "RECORDS_COLLECTION_ADD_CONTENT_BUTTON".localized(), image: nil, identifier: nil, options: [], children: [
             UIAction(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: nil, handler: { action in
                 let addRecordVC = AddRecordViewController()
+                addRecordVC.delegate = self
                 let sheetController = addRecordVC.sheetPresentationController
                 sheetController?.prefersGrabberVisible = false
                 sheetController?.detents = [.large()]
@@ -168,5 +169,11 @@ extension LibraryCollectionViewController {
         self.loadSavedData()
         
         self.logger.debug("Added demo data")
+    }
+}
+
+extension LibraryCollectionViewController: AddRecordDelegate {
+    func reloadData() {
+        self.loadSavedData()
     }
 }
