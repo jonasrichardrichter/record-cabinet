@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
+        window?.tintColor = UIColor(named: "AccentColor")
+        
         let splitViewController = UISplitViewController(style: .doubleColumn)
         let tabBarController = MainTabBarViewController()
         let sidebarController = MainSidebarViewController()

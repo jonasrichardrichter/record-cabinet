@@ -182,6 +182,7 @@ class AddRecordViewController: UIViewController {
         if self.nameTextField.text.orEmpty().isEmpty {
             let alert = UIAlertController(title: "ALERT_ERROR".localized(), message: "ADD_RECORD_ALERT_NO_NAME".localized(), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel))
+            
             self.present(alert, animated: true)
             
             self.navigationItem.leftBarButtonItem?.isEnabled = true
