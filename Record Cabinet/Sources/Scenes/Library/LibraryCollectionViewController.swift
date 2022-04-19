@@ -143,7 +143,7 @@ extension LibraryCollectionViewController {
     
     func createAddRecordButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "RECORDS_COLLECTION_ADD_CONTENT_BUTTON".localized(), image: UIImage(systemName: "plus.circle.fill"), primaryAction: nil, menu: UIMenu(title: "RECORDS_COLLECTION_ADD_CONTENT_BUTTON".localized(), image: nil, identifier: nil, options: [], children: [
-            UIAction(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: nil, handler: { action in
+            UIAction(title: "RECORDS_COLLECTION_ADD_RECORD_BUTTON".localized(), image: UIImage(systemName: "play.circle.fill"), handler: { action in
                 let addRecordVC = AddRecordViewController()
                 addRecordVC.delegate = self
                 let sheetController = addRecordVC.sheetPresentationController
@@ -152,7 +152,7 @@ extension LibraryCollectionViewController {
                 
                 self.present(UINavigationController(rootViewController: addRecordVC), animated: true)
             }),
-            UIAction(title: "Demodaten einfügen", image: nil, handler: { action in
+            UIAction(title: "Demodaten einfügen", image: UIImage(systemName: "wand.and.stars"), handler: { action in
                 self.addDemoData()
                 self.logger.trace("Tapped 'Add Record' button")
             })

@@ -10,6 +10,7 @@
 
 "CANCEL" = "Abbrechen";
 "ADD" = "Hinzufügen";
+"ALERT_ERROR" = "Es ist ein Fehler aufgetreten.";
 
 // MARK: - Records Collection
 
@@ -34,3 +35,6 @@
 "ADD_RECORD_TITLE" = "Neue Schallplatte";
 "ADD_RECORD_NAME_PLACEHOLDER" = "Name des Albums";
 "ADD_RECORD_ARTIST_PLACEHOLDER" = "Künstler:in des Albums";
+"ADD_RECORD_ALERT_NO_NAME" = "Bitte gib einen Namen für das Album ein.";
+"ADD_RECORD_ALERT_NO_ARTIST" = "Bitte gib einen Namen für den:die Künstler:in ein.";
+"ADD_RECORD_DATE_PICKER_LABEL" = "Veröffentlichung";

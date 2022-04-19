@@ -18,6 +18,7 @@ class AddRecordViewController: UIViewController {
     var selectImageButton: UIButton!
     var nameTextField: UITextField!
     var artistTextField: UITextField!
+    var datePickerLabel: UILabel!
     var datePicker: UIDatePicker!
     
     var scrollView: UIScrollView!
@@ -110,6 +111,10 @@ class AddRecordViewController: UIViewController {
         self.artistTextField.placeholder = "ADD_RECORD_ARTIST_PLACEHOLDER".localized()
         self.artistTextField.textAlignment = .center
         
+        self.datePickerLabel = UILabel()
+        self.datePickerLabel.text = "ADD_RECORD_DATE_PICKER_LABEL".localized()
+        self.datePickerLabel.font = .preferredFont(forTextStyle: .callout)
+        
         self.datePicker.preferredDatePickerStyle = .compact
         self.datePicker.datePickerMode = .date
         self.datePicker.maximumDate = Date()
@@ -117,6 +122,7 @@ class AddRecordViewController: UIViewController {
         self.selectImageButton.translatesAutoresizingMaskIntoConstraints = false
         self.nameTextField.translatesAutoresizingMaskIntoConstraints = false
         self.artistTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.datePickerLabel.translatesAutoresizingMaskIntoConstraints = false
         self.datePicker.translatesAutoresizingMaskIntoConstraints = false
         
         self.nameTextField.becomeFirstResponder()
@@ -127,6 +133,7 @@ class AddRecordViewController: UIViewController {
         self.containerView.addSubview(self.selectImageButton)
         self.containerView.addSubview(self.nameTextField)
         self.containerView.addSubview(self.artistTextField)
+        self.containerView.addSubview(self.datePickerLabel)
         self.containerView.addSubview(self.datePicker)
         
         NSLayoutConstraint.activate([
@@ -137,18 +144,21 @@ class AddRecordViewController: UIViewController {
             
             self.nameTextField.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
             self.nameTextField.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 20),
-            self.view.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor, constant: 20),
+            self.containerView.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor, constant: 20),
             self.nameTextField.topAnchor.constraint(equalTo: self.selectImageButton.bottomAnchor, constant: 20),
             
             self.artistTextField.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 10),
             self.artistTextField.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
             self.artistTextField.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 20),
-            self.view.trailingAnchor.constraint(equalTo: self.artistTextField.trailingAnchor, constant: 20),
+            self.containerView.trailingAnchor.constraint(equalTo: self.artistTextField.trailingAnchor, constant: 20),
             
-            self.datePicker.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 10),
-            self.view.trailingAnchor.constraint(equalTo: self.datePicker.leadingAnchor, constant: 10),
-            self.datePicker.topAnchor.constraint(equalTo: self.artistTextField.bottomAnchor, constant: 15),
-            self.datePicker.bottomAnchor.constraint(greaterThanOrEqualTo: self.containerView.bottomAnchor, constant: 15)
+            self.datePickerLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 20),
+            self.datePickerLabel.topAnchor.constraint(equalTo: self.artistTextField.bottomAnchor, constant: 25),
+            
+            self.datePickerLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.datePicker.leadingAnchor, constant: 10),
+            self.datePicker.centerYAnchor.constraint(equalTo: self.datePickerLabel.centerYAnchor),
+            self.containerView.trailingAnchor.constraint(equalTo: self.datePicker.trailingAnchor, constant: 20),
+//            self.datePicker.bottomAnchor.constraint(greaterThanOrEqualTo: self.containerView.bottomAnchor, constant: 15)
         ])
         
         self.view.invalidateIntrinsicContentSize()
@@ -191,11 +201,23 @@ class AddRecordViewController: UIViewController {
             return
         }
         
+        #warning("Complete implementation")
+        if Calendar.current.isDateInToday(self.datePicker.date) {
+            let alert = UIAlertController(title: "ADD_RECORD_ALERT_NO_DATE_TITLE".localized(), message: "ADD_RECORD_ALERT_NO_DATE_DESCR".localized(), preferredStyle: .alert)
+            
+            self.present(alert, animated: true)
+            
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            self.navigationItem.rightBarButtonItem = self.rightBarButton
+            
+            return
+        }
+        
         let record = Record(context: self.container.viewContext)
         
         record.name = self.nameTextField.text.orEmpty()
         record.artist = self.artistTextField.text.orEmpty()
-        record.releaseDate = Date()
+        record.releaseDate = self.datePicker.date
         
         do {
             try self.container.viewContext.save()
