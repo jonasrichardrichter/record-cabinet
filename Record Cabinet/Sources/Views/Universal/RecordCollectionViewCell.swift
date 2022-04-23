@@ -10,6 +10,7 @@ import UIKit
 class RecordCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
     let recordImage = UIImageView()
     let recordLabel = UILabel()
     let artistLabel = UILabel()

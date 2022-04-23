@@ -19,6 +19,7 @@
 		41745DFE27E4C2F400E24B8E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */; };
 		4174F5AC2805C1E3009CE6C2 /* AddRecordDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4174F5AB2805C1E3009CE6C2 /* AddRecordDelegate.swift */; };
 		41B3FE0227EF985100D04AA0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B3FE0127EF985100D04AA0 /* CloudKit.framework */; };
+		41BEECD2281440EC00B24296 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEECD1281440EC00B24296 /* CategoryCollectionViewCell.swift */; };
 		41E6073527E6051E001D10FC /* RecordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */; };
 		41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073627E60ACD001D10FC /* SearchViewController.swift */; };
 		41E6073A27E61097001D10FC /* Record+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073827E61097001D10FC /* Record+CoreDataClass.swift */; };
@@ -44,6 +45,7 @@
 		41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4174F5AB2805C1E3009CE6C2 /* AddRecordDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordDelegate.swift; sourceTree = "<group>"; };
 		41B3FE0127EF985100D04AA0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		41BEECD1281440EC00B24296 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCollectionViewCell.swift; sourceTree = "<group>"; };
 		41E6073627E60ACD001D10FC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		41E6073827E61097001D10FC /* Record+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */,
+				41BEECD1281440EC00B24296 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Universal;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				41FF35CA27EF2E20004C8E94 /* AddRecordViewController.swift in Sources */,
 				41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */,
 				410E665E2803108100D38626 /* Optional+Or.swift in Sources */,
+				41BEECD2281440EC00B24296 /* CategoryCollectionViewCell.swift in Sources */,
 				41665AEA27E3A18F0022BCAB /* Logger+Init.swift in Sources */,
 				41665AEF27E3A2910022BCAB /* MainTabBarViewController.swift in Sources */,
 				41F9064227E39BF300D65E3F /* SceneDelegate.swift in Sources */,

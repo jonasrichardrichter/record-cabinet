@@ -119,7 +119,7 @@ class LibraryCollectionViewController: UIViewController {
     
 }
 
-// MARK: - Layout
+// MARK: - Data Source
 extension LibraryCollectionViewController {
     
     func configureDataSource() {
