@@ -13,7 +13,9 @@ class AddRecordViewController: UIViewController {
     
     // MARK: - Properties
     
-    lazy var contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+    lazy var contentSize: CGSize  = { [unowned self] in
+        return CGSize(width: self.view.frame.width, height: self.view.frame.height)
+    }()
     
     var selectImageButton: UIButton!
     var nameTextField: UITextField!
@@ -49,9 +51,6 @@ class AddRecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupNavbar()
-        self.setupView()
-        
         // Core Data
         self.container = NSPersistentContainer(name: "Record_Cabinet")
         
@@ -60,6 +59,13 @@ class AddRecordViewController: UIViewController {
                 self.logger.error("Unresolved error: \(error)")
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setupNavbar()
+        self.setupView()
     }
     
     // MARK: - View Setup
