@@ -20,8 +20,6 @@
 		41745DFE27E4C2F400E24B8E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */; };
 		4174F5AC2805C1E3009CE6C2 /* AddRecordDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4174F5AB2805C1E3009CE6C2 /* AddRecordDelegate.swift */; };
 		4181FAEE28145C7D00704316 /* SearchCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181FAED28145C7D00704316 /* SearchCategory.swift */; };
-		4181FAF228145E4E00704316 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181FAF128145E4E00704316 /* SearchView.swift */; };
-		4181FAF62814662800704316 /* RecordListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181FAF52814662800704316 /* RecordListCellView.swift */; };
 		41B3FE0227EF985100D04AA0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B3FE0127EF985100D04AA0 /* CloudKit.framework */; };
 		41BEECD2281440EC00B24296 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEECD1281440EC00B24296 /* CategoryCollectionViewCell.swift */; };
 		41E6073527E6051E001D10FC /* RecordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */; };
@@ -50,8 +48,6 @@
 		41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4174F5AB2805C1E3009CE6C2 /* AddRecordDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordDelegate.swift; sourceTree = "<group>"; };
 		4181FAED28145C7D00704316 /* SearchCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCategory.swift; sourceTree = "<group>"; };
-		4181FAF128145E4E00704316 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		4181FAF52814662800704316 /* RecordListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListCellView.swift; sourceTree = "<group>"; };
 		41B3FE0127EF985100D04AA0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		41BEECD1281440EC00B24296 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		41E6073427E6051E001D10FC /* RecordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -88,8 +84,6 @@
 			children = (
 				41E6073627E60ACD001D10FC /* SearchViewController.swift */,
 				4181FAED28145C7D00704316 /* SearchCategory.swift */,
-				4181FAF128145E4E00704316 /* SearchView.swift */,
-				4181FAF52814662800704316 /* RecordListCellView.swift */,
 				416D36D6281D6A1E0056A741 /* SearchResultsCollectionViewController.swift */,
 			);
 			path = Search;
@@ -326,14 +320,12 @@
 				41665AF327E3A4360022BCAB /* LibraryCollectionViewController.swift in Sources */,
 				41FF35CA27EF2E20004C8E94 /* AddRecordViewController.swift in Sources */,
 				41E6073727E60ACD001D10FC /* SearchViewController.swift in Sources */,
-				4181FAF228145E4E00704316 /* SearchView.swift in Sources */,
 				410E665E2803108100D38626 /* Optional+Or.swift in Sources */,
 				41BEECD2281440EC00B24296 /* CategoryCollectionViewCell.swift in Sources */,
 				41665AEA27E3A18F0022BCAB /* Logger+Init.swift in Sources */,
 				41665AEF27E3A2910022BCAB /* MainTabBarViewController.swift in Sources */,
 				41F9064227E39BF300D65E3F /* SceneDelegate.swift in Sources */,
 				41F9064A27E39BF300D65E3F /* Record_Cabinet.xcdatamodeld in Sources */,
-				4181FAF62814662800704316 /* RecordListCellView.swift in Sources */,
 				41E6073B27E61097001D10FC /* Record+CoreDataProperties.swift in Sources */,
 				41E6073A27E61097001D10FC /* Record+CoreDataClass.swift in Sources */,
 				41E6073527E6051E001D10FC /* RecordCollectionViewCell.swift in Sources */,
