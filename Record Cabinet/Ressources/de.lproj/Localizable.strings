@@ -11,6 +11,10 @@
 "CANCEL" = "Abbrechen";
 "ADD" = "Hinzufügen";
 "ALERT_ERROR" = "Es ist ein Fehler aufgetreten.";
+"ALERT_ERROR_MESSAGE" = "Bitte versuche es später erneut.";
+"GENERAL_PLAYLIST" = "Playlist";
+"GENERAL_RECORD" = "Schallplatte";
+"GENERAL_ALL" = "Alle";
 
 // MARK: - Records Collection
 

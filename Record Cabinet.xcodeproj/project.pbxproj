@@ -16,6 +16,7 @@
 		41665AEF27E3A2910022BCAB /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */; };
 		41665AF327E3A4360022BCAB /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AF227E3A4360022BCAB /* LibraryCollectionViewController.swift */; };
 		41665AF527E3B36A0022BCAB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41665AF427E3B36A0022BCAB /* String+Localized.swift */; };
+		416D36D7281D6A1E0056A741 /* SearchResultsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416D36D6281D6A1E0056A741 /* SearchResultsCollectionViewController.swift */; };
 		41745DFE27E4C2F400E24B8E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */; };
 		4174F5AC2805C1E3009CE6C2 /* AddRecordDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4174F5AB2805C1E3009CE6C2 /* AddRecordDelegate.swift */; };
 		4181FAEE28145C7D00704316 /* SearchCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181FAED28145C7D00704316 /* SearchCategory.swift */; };
@@ -45,6 +46,7 @@
 		41665AEE27E3A2910022BCAB /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		41665AF227E3A4360022BCAB /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		41665AF427E3B36A0022BCAB /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		416D36D6281D6A1E0056A741 /* SearchResultsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCollectionViewController.swift; sourceTree = "<group>"; };
 		41745DFD27E4C2F400E24B8E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4174F5AB2805C1E3009CE6C2 /* AddRecordDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordDelegate.swift; sourceTree = "<group>"; };
 		4181FAED28145C7D00704316 /* SearchCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCategory.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				4181FAED28145C7D00704316 /* SearchCategory.swift */,
 				4181FAF128145E4E00704316 /* SearchView.swift */,
 				4181FAF52814662800704316 /* RecordListCellView.swift */,
+				416D36D6281D6A1E0056A741 /* SearchResultsCollectionViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				4181FAEE28145C7D00704316 /* SearchCategory.swift in Sources */,
 				41E6074227E6483C001D10FC /* SceneDelegate+NSToolbar.swift in Sources */,
 				41665AF527E3B36A0022BCAB /* String+Localized.swift in Sources */,
+				416D36D7281D6A1E0056A741 /* SearchResultsCollectionViewController.swift in Sources */,
 				415E050D27E7B1A7001145A2 /* MainNavigationController.swift in Sources */,
 				41665AF327E3A4360022BCAB /* LibraryCollectionViewController.swift in Sources */,
 				41FF35CA27EF2E20004C8E94 /* AddRecordViewController.swift in Sources */,

@@ -19,7 +19,8 @@ class SearchViewController: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, SearchCategory>!
     
-    var searchBar: UISearchBar!
+    var searchController: UISearchController!
+    var resultController: SearchResultsCollectionViewController!
     
     var logger = Logger(for: "SearchViewController")
     
@@ -105,12 +106,34 @@ extension SearchViewController {
 }
 
 // MARK: - SearchBar
-extension SearchViewController {
+extension SearchViewController: UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
     
     func setupSearchBar() {
-        self.searchBar = UISearchBar()
-        self.searchBar.searchBarStyle = .default
+        self.resultController = SearchResultsCollectionViewController()
         
-        self.view.addSubview(self.searchBar)
+        self.searchController = UISearchController(searchResultsController: self.resultController)
+        self.searchController.delegate = self
+        self.searchController.searchResultsUpdater = self
+        self.searchController.searchBar.autocapitalizationType = .none
+        self.searchController.searchBar.delegate = self
+        self.searchController.searchBar.spellCheckingType = .no
+        self.searchController.automaticallyShowsSearchResultsController = true
+        self.searchController.showsSearchResultsController = true
+        
+        // TODO: Add possibility to search for specific category of content
+        // self.searchController.searchBar.scopeButtonTitles = ["GENERAL_ALL".localized() ,"GENERAL_RECORD".localized(), "GENERAL_PLAYLIST".localized()]
+        
+        self.navigationItem.searchController = self.searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        
+        self.definesPresentationContext = true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.resultController.searchFor(term: searchController.searchBar.text.orEmpty())
     }
 }

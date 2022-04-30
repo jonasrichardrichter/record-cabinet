@@ -9,6 +9,7 @@ import UIKit
 import Logging
 import CoreData
 
+// TODO: Refactor for usage in multiple situations, like search results
 class LibraryCollectionViewController: UIViewController {
     
     enum Section {
@@ -38,11 +39,16 @@ class LibraryCollectionViewController: UIViewController {
         self.createAddRecordButton()
         
         // Core Data
-        container = NSPersistentContainer(name: "Record_Cabinet")
+        self.container = NSPersistentContainer(name: "Record_Cabinet")
         
-        container.loadPersistentStores { storeDescription, error in
+        self.container.loadPersistentStores { storeDescription, error in
             if let error = error {
                 self.logger.error("Unresolved error: \(error)")
+                
+                let alert = UIAlertController(title: "ALERT_ERROR".localized(), message: "ALERT_ERROR_MESSAGE".localized(), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel))
+                
+                self.present(alert, animated: true)
             }
         }
         
