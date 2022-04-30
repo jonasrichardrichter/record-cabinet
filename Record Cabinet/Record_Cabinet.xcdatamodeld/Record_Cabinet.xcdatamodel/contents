@@ -18,15 +18,9 @@
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="collectionItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CollectionItem" inverseName="record" inverseEntity="CollectionItem"/>
     </entity>
-    <entity name="SearchCategory" representedClassName="SearchCategory" syncable="YES" codeGenerationType="class">
-        <attribute name="image" optional="YES" attributeType="Binary"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-    </entity>
     <elements>
         <element name="Collection" positionX="-180" positionY="18" width="128" height="74"/>
         <element name="CollectionItem" positionX="-171" positionY="36" width="128" height="89"/>
         <element name="Record" positionX="-193.45703125" positionY="-18" width="130.45703125" height="104"/>
-        <element name="SearchCategory" positionX="-180" positionY="45" width="128" height="74"/>
     </elements>
 </model>

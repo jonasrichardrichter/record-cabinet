@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainTabBarViewController: UITabBarController {
 
@@ -15,7 +16,7 @@ class MainTabBarViewController: UITabBarController {
         let recordsVC = UINavigationController(rootViewController: LibraryCollectionViewController())
         recordsVC.tabBarItem = UITabBarItem(title: "RECORDS_COLLECTION_TITLE".localized(), image: UIImage(systemName: "square.stack.fill"), selectedImage: UIImage(systemName: "square.stack.fill"))
         
-        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        let searchVC = UIHostingController(rootView: SearchView())
         searchVC.tabBarItem = UITabBarItem(title: "SEARCH_TITLE".localized(), image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
         
         self.viewControllers = [recordsVC, searchVC]

@@ -19,6 +19,8 @@ class SearchViewController: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, SearchCategory>!
     
+    var searchBar: UISearchBar!
+    
     var logger = Logger(for: "SearchViewController")
     
     // MARK: - Overrides
@@ -33,6 +35,7 @@ class SearchViewController: UIViewController {
         self.setupView()
         self.configureDataSource()
         self.applyCategorySnapshot()
+        self.setupSearchBar()
     }
     
     // MARK: - View Setup
@@ -98,5 +101,16 @@ extension SearchViewController {
         snapshot.appendSections([.categories])
         snapshot.appendItems(categories)
         self.dataSource.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+// MARK: - SearchBar
+extension SearchViewController {
+    
+    func setupSearchBar() {
+        self.searchBar = UISearchBar()
+        self.searchBar.searchBarStyle = .default
+        
+        self.view.addSubview(self.searchBar)
     }
 }
