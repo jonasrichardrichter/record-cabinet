@@ -109,6 +109,14 @@ extension SearchResultsCollectionViewController {
 extension SearchResultsCollectionViewController {
     
     func searchFor(term: String) {
+        
+        // Only search if term is not empty
+        if term.isEmpty {
+            self.fetchedResults = []
+            self.applyDatasourceForResults()
+            return
+        }
+
         self.logger.trace("Start search for term '\(term)'")
         
         // Remove leading and trailing whitespaces and split into multiple items
@@ -116,10 +124,8 @@ extension SearchResultsCollectionViewController {
         let termTrimmed = term.trimmingCharacters(in: whitespacesCharacterSet)
         let termItems = termTrimmed.components(separatedBy: whitespacesCharacterSet) as [String]
         
-        
-        
         let request = Record.createFetchRequest()
-        let titlePredicate = NSPredicate(format: "name LIKE %@", term.appending("*"))
+        let titlePredicate = NSPredicate(format: "ANY name LIKE[c] %@", term.appending("*"))
         
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             titlePredicate
@@ -132,11 +138,7 @@ extension SearchResultsCollectionViewController {
             self.fetchedResults = try context.fetch(request)
             self.logger.trace("Fetched \(self.fetchedResults.count) results")
             
-            var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(self.fetchedResults)
-            
-            self.dataSource.apply(snapshot, animatingDifferences: true)
+            self.applyDatasourceForResults()
         } catch {
             self.logger.error("There was an error: \(error.localizedDescription)")
             
@@ -146,8 +148,13 @@ extension SearchResultsCollectionViewController {
             self.present(alert, animated: true)
             return
         }
-        
-       
     }
     
+    func applyDatasourceForResults() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(self.fetchedResults)
+        
+        self.dataSource.apply(snapshot, animatingDifferences: true)
+    }
 }
