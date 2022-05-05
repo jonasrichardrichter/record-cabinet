@@ -47,7 +47,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         self.categoryLabel = UILabel()
         self.categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         self.categoryLabel.adjustsFontForContentSizeCategory = true
-        self.categoryLabel.text = "Category"
+        self.categoryLabel.text = "SEARCH_CATEGORY".localized()
         self.categoryLabel.font = .preferredFont(forTextStyle: .headline)
         self.categoryLabel.numberOfLines = 1
         self.categoryLabel.lineBreakMode = .byTruncatingTail

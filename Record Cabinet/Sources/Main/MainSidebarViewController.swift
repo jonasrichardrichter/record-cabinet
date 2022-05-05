@@ -61,9 +61,7 @@ class MainSidebarViewController: UIViewController {
         self.configureDataSource()
         self.applyInitialSnapshot()
         
-        // Select Library at start
-        
-        
+        self.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: 1, section: SidebarSection.library.rawValue))
     }
 }
 
@@ -75,6 +73,7 @@ extension MainSidebarViewController {
         self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.createLayout())
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.delegate = self
+        self.collectionView.selectionFollowsFocus = true
         self.view.addSubview(self.collectionView)
     }
     
@@ -113,10 +112,19 @@ extension MainSidebarViewController: UICollectionViewDelegate {
             let splitViewController = self.splitViewController
         else { return }
         
-        let vcToShow = MainNavigationController(rootViewController: LibraryCollectionViewController())
-        vcToShow.sceneDelegate = self.sceneDelegate
-        
-        splitViewController.setViewController(vcToShow, for: .secondary)
+        switch indexPath.item {
+        case 1:
+            let vcToShow = MainNavigationController(rootViewController: LibraryCollectionViewController())
+            vcToShow.sceneDelegate = self.sceneDelegate
+            
+            splitViewController.setViewController(vcToShow, for: .secondary)
+        case 2:
+            let vcToShow = MainNavigationController(rootViewController: ArtistTableViewController())
+            
+            splitViewController.setViewController(vcToShow, for: .secondary)
+        default:
+            return
+        }
     }
     
     private func didSelectSearchItem(_: SidebarItem, at indexPath: IndexPath) {

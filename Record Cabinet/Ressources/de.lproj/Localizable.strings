@@ -25,6 +25,7 @@
 // MARK: - Search
 
 "SEARCH_TITLE" = "Suche";
+"SEARCH_CATEGORY" = "Kategorie";
 
 // MARK: - Sidebar
 

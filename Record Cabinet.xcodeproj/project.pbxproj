@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		410E665C2803101700D38626 /* String+orEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410E665B2803101700D38626 /* String+orEmpty.swift */; };
 		410E665E2803108100D38626 /* Optional+Or.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410E665D2803108100D38626 /* Optional+Or.swift */; };
+		411A255D2822E275001BC635 /* ArtistSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A255C2822E275001BC635 /* ArtistSplitViewController.swift */; };
+		411A255F282302FE001BC635 /* ArtistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A255E282302FE001BC635 /* ArtistTableViewController.swift */; };
+		411A256128230321001BC635 /* ArtistRecordsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A256028230321001BC635 /* ArtistRecordsCollectionViewController.swift */; };
 		4129F73627E3B41000D3B3F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4129F73827E3B41000D3B3F8 /* Localizable.strings */; };
 		415E050D27E7B1A7001145A2 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E050C27E7B1A7001145A2 /* MainNavigationController.swift */; };
 		41665AE727E3A1630022BCAB /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 41665AE627E3A1630022BCAB /* Logging */; };
@@ -38,6 +41,9 @@
 /* Begin PBXFileReference section */
 		410E665B2803101700D38626 /* String+orEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+orEmpty.swift"; sourceTree = "<group>"; };
 		410E665D2803108100D38626 /* Optional+Or.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Or.swift"; sourceTree = "<group>"; };
+		411A255C2822E275001BC635 /* ArtistSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistSplitViewController.swift; sourceTree = "<group>"; };
+		411A255E282302FE001BC635 /* ArtistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistTableViewController.swift; sourceTree = "<group>"; };
+		411A256028230321001BC635 /* ArtistRecordsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistRecordsCollectionViewController.swift; sourceTree = "<group>"; };
 		4129F73727E3B41000D3B3F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		415E050C27E7B1A7001145A2 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		41665AE927E3A18F0022BCAB /* Logger+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Init.swift"; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 		41665AF027E3A4140022BCAB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				41FF1BCA2821ABD2002AD2E9 /* Artists */,
 				41FF35C827EF2DE5004C8E94 /* Add Record */,
 				4129F73927E3B54500D3B3F8 /* Search */,
 				41665AF127E3A4190022BCAB /* Library */,
@@ -222,6 +229,16 @@
 				41F9064827E39BF300D65E3F /* Record_Cabinet.xcdatamodeld */,
 			);
 			path = "Record Cabinet";
+			sourceTree = "<group>";
+		};
+		41FF1BCA2821ABD2002AD2E9 /* Artists */ = {
+			isa = PBXGroup;
+			children = (
+				411A255C2822E275001BC635 /* ArtistSplitViewController.swift */,
+				411A255E282302FE001BC635 /* ArtistTableViewController.swift */,
+				411A256028230321001BC635 /* ArtistRecordsCollectionViewController.swift */,
+			);
+			path = Artists;
 			sourceTree = "<group>";
 		};
 		41FF35C827EF2DE5004C8E94 /* Add Record */ = {
@@ -311,6 +328,7 @@
 			files = (
 				41E6074027E644F2001D10FC /* MainSidebarViewController.swift in Sources */,
 				410E665C2803101700D38626 /* String+orEmpty.swift in Sources */,
+				411A255D2822E275001BC635 /* ArtistSplitViewController.swift in Sources */,
 				41F9064027E39BF300D65E3F /* AppDelegate.swift in Sources */,
 				4181FAEE28145C7D00704316 /* SearchCategory.swift in Sources */,
 				41E6074227E6483C001D10FC /* SceneDelegate+NSToolbar.swift in Sources */,
@@ -324,7 +342,9 @@
 				41BEECD2281440EC00B24296 /* CategoryCollectionViewCell.swift in Sources */,
 				41665AEA27E3A18F0022BCAB /* Logger+Init.swift in Sources */,
 				41665AEF27E3A2910022BCAB /* MainTabBarViewController.swift in Sources */,
+				411A255F282302FE001BC635 /* ArtistTableViewController.swift in Sources */,
 				41F9064227E39BF300D65E3F /* SceneDelegate.swift in Sources */,
+				411A256128230321001BC635 /* ArtistRecordsCollectionViewController.swift in Sources */,
 				41F9064A27E39BF300D65E3F /* Record_Cabinet.xcdatamodeld in Sources */,
 				41E6073B27E61097001D10FC /* Record+CoreDataProperties.swift in Sources */,
 				41E6073A27E61097001D10FC /* Record+CoreDataClass.swift in Sources */,
