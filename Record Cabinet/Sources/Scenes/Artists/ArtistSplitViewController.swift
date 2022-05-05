@@ -20,8 +20,7 @@ class ArtistSplitViewController: UISplitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let artistTableVC = ArtistTableViewController(style: .insetGrouped)
-        artistTableVC.view.backgroundColor = .gray
+        let artistTableVC = ArtistTableViewController()
         
         let artistRecordCVC = UIViewController()
         artistRecordCVC.view.backgroundColor = .orange

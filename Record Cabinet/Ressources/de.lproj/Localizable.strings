@@ -43,3 +43,8 @@
 "ADD_RECORD_ALERT_NO_NAME" = "Bitte gib einen Namen für das Album ein.";
 "ADD_RECORD_ALERT_NO_ARTIST" = "Bitte gib einen Namen für den:die Künstler:in ein.";
 "ADD_RECORD_DATE_PICKER_LABEL" = "Veröffentlichung";
+
+// MARK: - Artists
+
+"ARTISTS_TITLE" = "Künstler:innen";
+ 

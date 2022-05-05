@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Logging
+import Algorithms
 
 class ArtistTableViewController: UITableViewController {
     
@@ -18,6 +19,17 @@ class ArtistTableViewController: UITableViewController {
     var container: NSPersistentContainer!
     
     var artists: [String] = []
+    var artistsFirstLetter: [Character] = []
+    
+    // MARK: - Init
+    
+    init() {
+        super.init(style: .insetGrouped)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Overrides
     
@@ -27,6 +39,10 @@ class ArtistTableViewController: UITableViewController {
 #if DEBUG
         self.logger.logLevel = .trace
 #endif
+        
+        self.title = "ARTISTS_TITLE".localized()
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         // Core Data
         self.container = NSPersistentContainer(name: "Record_Cabinet")
@@ -72,32 +88,49 @@ class ArtistTableViewController: UITableViewController {
         var fetchedArtists: [String] = []
         
         for result in results {
-            fetchedArtists.append(result["artist"] ?? "error")
+            if let artistName = result["artist"] {
+                fetchedArtists.append(artistName)
+                if let firstCharacter = artistName.first {
+                    self.artistsFirstLetter.append(firstCharacter)
+                }
+            }
+            
         }
         
         self.artists = fetchedArtists
+        self.artistsFirstLetter = Array(self.artistsFirstLetter.uniqued())
         
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.artistsFirstLetter.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.artists.count
+        let startingCharacter = self.artistsFirstLetter[section]
+        let filteredArtists = self.artists.filter({ $0.hasPrefix(String(startingCharacter)) })
+        
+        return filteredArtists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "reuseIdentifier")
-
         var content = cell.defaultContentConfiguration()
         
-        content.text = self.artists[indexPath.row]
+        let startingCharacter = self.artistsFirstLetter[indexPath.section]
+        let filteredArtists = self.artists.filter({ $0.hasPrefix(String(startingCharacter)) })
+        let artist = filteredArtists[indexPath.row]
+        
+        content.text = artist
         
         cell.contentConfiguration = content
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return String(self.artistsFirstLetter[section])
     }
 }

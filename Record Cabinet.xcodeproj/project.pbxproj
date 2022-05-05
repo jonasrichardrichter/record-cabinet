@@ -12,6 +12,7 @@
 		411A255D2822E275001BC635 /* ArtistSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A255C2822E275001BC635 /* ArtistSplitViewController.swift */; };
 		411A255F282302FE001BC635 /* ArtistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A255E282302FE001BC635 /* ArtistTableViewController.swift */; };
 		411A256128230321001BC635 /* ArtistRecordsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A256028230321001BC635 /* ArtistRecordsCollectionViewController.swift */; };
+		411A2564282443E9001BC635 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 411A2563282443E9001BC635 /* Algorithms */; };
 		4129F73627E3B41000D3B3F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4129F73827E3B41000D3B3F8 /* Localizable.strings */; };
 		415E050D27E7B1A7001145A2 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E050C27E7B1A7001145A2 /* MainNavigationController.swift */; };
 		41665AE727E3A1630022BCAB /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 41665AE627E3A1630022BCAB /* Logging */; };
@@ -77,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411A2564282443E9001BC635 /* Algorithms in Frameworks */,
 				41665AE727E3A1630022BCAB /* Logging in Frameworks */,
 				41B3FE0227EF985100D04AA0 /* CloudKit.framework in Frameworks */,
 			);
@@ -268,6 +270,7 @@
 			name = "Record Cabinet";
 			packageProductDependencies = (
 				41665AE627E3A1630022BCAB /* Logging */,
+				411A2563282443E9001BC635 /* Algorithms */,
 			);
 			productName = "Record Cabinet";
 			productReference = 41F9063C27E39BF300D65E3F /* Record Cabinet.app */;
@@ -298,6 +301,7 @@
 			mainGroup = 41F9063327E39BF300D65E3F;
 			packageReferences = (
 				41665AE527E3A1630022BCAB /* XCRemoteSwiftPackageReference "swift-log" */,
+				411A2562282443E8001BC635 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 41F9063D27E39BF300D65E3F /* Products */;
 			projectDirPath = "";
@@ -571,6 +575,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		411A2562282443E8001BC635 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		41665AE527E3A1630022BCAB /* XCRemoteSwiftPackageReference "swift-log" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-log";
@@ -582,6 +594,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		411A2563282443E9001BC635 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 411A2562282443E8001BC635 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
 		41665AE627E3A1630022BCAB /* Logging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 41665AE527E3A1630022BCAB /* XCRemoteSwiftPackageReference "swift-log" */;
