@@ -10,6 +10,7 @@
 
 "CANCEL" = "Abbrechen";
 "ADD" = "Hinzufügen";
+"DELETE" = "Entfernen";
 "ALERT_ERROR" = "Es ist ein Fehler aufgetreten.";
 "ALERT_ERROR_MESSAGE" = "Bitte versuche es später erneut.";
 "GENERAL_PLAYLIST" = "Playlist";

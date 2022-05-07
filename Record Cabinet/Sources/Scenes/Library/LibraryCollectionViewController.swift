@@ -20,6 +20,8 @@ class LibraryCollectionViewController: UIViewController {
     
     var logger = Logger(for: "RecordsCollectionViewController")
     
+    var records: [Record] = []
+    
     var container: NSPersistentContainer!
     
     var collectionView: UICollectionView!
@@ -71,12 +73,12 @@ class LibraryCollectionViewController: UIViewController {
         request.sortDescriptors = [sort]
         
         do {
-            let records = try self.container.viewContext.fetch(request)
-            self.logger.trace("Fetched \(records.count) records")
+            self.records = try self.container.viewContext.fetch(request)
+            self.logger.trace("Fetched \(self.records.count) records")
             
             var snapshot = NSDiffableDataSourceSnapshot<Section, Record>()
             snapshot.appendSections([.main])
-            snapshot.appendItems(records)
+            snapshot.appendItems(self.records)
             self.dataSource.apply(snapshot, animatingDifferences: true)
             
         } catch {
@@ -97,6 +99,7 @@ class LibraryCollectionViewController: UIViewController {
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .systemBackground
         self.collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        self.collectionView.delegate = self
         
         self.view.addSubview(self.collectionView)
         self.logger.trace("View setup successful")
@@ -182,4 +185,26 @@ extension LibraryCollectionViewController: AddRecordDelegate {
     func reloadData() {
         self.loadSavedData()
     }
+}
+
+// MARK: - Context Menu
+extension LibraryCollectionViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+            let deleteAction = UIAction(title: "DELETE".localized(), image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil, attributes: .destructive, state: .off) { action in
+                let record = self.records[indexPath.row]
+                self.container.viewContext.delete(record)
+                self.saveContext()
+                self.reloadData()
+                
+                self.logger.trace("Deleted record at indexPath \(indexPath.description)")
+            }
+            
+            return UIMenu(title: "", image: nil, identifier: nil, options: .singleSelection, children: [deleteAction])
+        }
+        
+        return config
+    }
+    
 }
