@@ -19,7 +19,7 @@ class SearchResultsCollectionViewController: UIViewController {
     
     var logger = Logger(for: "SearchResultsCollectionViewController")
     
-    var container: NSPersistentContainer!
+    var container: NSPersistentCloudKitContainer!
     var fetchedResults: [Record] = []
     
     var collectionView: UICollectionView!
@@ -39,18 +39,9 @@ class SearchResultsCollectionViewController: UIViewController {
         self.configureDataSource()
         
         // Core Data
-        self.container = NSPersistentContainer(name: "Record_Cabinet")
         
-        self.container.loadPersistentStores { storeDescription, error in
-            if let error = error {
-                self.logger.error("Unresolved error: \(error)")
-                
-                let alert = UIAlertController(title: "ALERT_ERROR".localized(), message: "ALERT_ERROR_MESSAGE".localized(), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel))
-                
-                self.present(alert, animated: true)
-            }
-        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        self.container = appDelegate.persistentContainer
     }
     
     func setupView() {

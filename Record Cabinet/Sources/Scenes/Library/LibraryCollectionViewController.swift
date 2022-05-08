@@ -22,7 +22,7 @@ class LibraryCollectionViewController: UIViewController {
     
     var records: [Record] = []
     
-    var container: NSPersistentContainer!
+    var container: NSPersistentCloudKitContainer!
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Record>!
@@ -41,24 +41,15 @@ class LibraryCollectionViewController: UIViewController {
         self.createAddRecordButton()
         
         // Core Data
-        self.container = NSPersistentContainer(name: "Record_Cabinet")
         
-        self.container.loadPersistentStores { storeDescription, error in
-            if let error = error {
-                self.logger.error("Unresolved error: \(error)")
-                
-                let alert = UIAlertController(title: "ALERT_ERROR".localized(), message: "ALERT_ERROR_MESSAGE".localized(), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel))
-                
-                self.present(alert, animated: true)
-            }
-        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        self.container = appDelegate.persistentContainer
         
         self.loadSavedData()
     }
     
     func saveContext() {
-        if container.viewContext.hasChanges {
+        if self.container.viewContext.hasChanges {
             do {
                 try container.viewContext.save()
             } catch {

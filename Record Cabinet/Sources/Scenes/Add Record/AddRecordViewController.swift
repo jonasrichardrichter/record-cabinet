@@ -28,7 +28,7 @@ class AddRecordViewController: UIViewController {
     
     var delegate: AddRecordDelegate?
     
-    var container: NSPersistentContainer!
+    var container: NSPersistentCloudKitContainer!
     var logger = Logger(for: "AddRecordViewController")
     
     // MARK: - NavigationItem Buttons
@@ -52,13 +52,8 @@ class AddRecordViewController: UIViewController {
         super.viewDidLoad()
         
         // Core Data
-        self.container = NSPersistentContainer(name: "Record_Cabinet")
-        
-        self.container.loadPersistentStores { storeDescription, error in
-            if let error = error {
-                self.logger.error("Unresolved error: \(error)")
-            }
-        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        self.container = appDelegate.persistentContainer
     }
     
     override func viewWillAppear(_ animated: Bool) {
