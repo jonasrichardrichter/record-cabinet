@@ -117,9 +117,11 @@ extension SearchResultsCollectionViewController {
         
         let request = Record.createFetchRequest()
         let titlePredicate = NSPredicate(format: "ANY name LIKE[c] %@", term.appending("*"))
+        let artistPredicate = NSPredicate(format: "ANY artist LIKE[c] %@", term.appending("*"))
         
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            titlePredicate
+        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
+            titlePredicate,
+            artistPredicate
         ])
         
         let context = self.container.viewContext
